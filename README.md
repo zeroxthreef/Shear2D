@@ -1,5 +1,5 @@
 # Shear2D
-G 2D game engine for C/C++
+2D game engine for C/C++
 
 ## Features
 * Chipmunk2D physics
