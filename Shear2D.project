@@ -190,5 +190,26 @@
   <VirtualDirectory Name="src">
     <File Name="src/core.c"/>
     <File Name="src/shear.h"/>
+    <File Name="src/scenegraph.c"/>
+    <File Name="src/scenegraph.h"/>
+    <File Name="src/module.c"/>
+    <File Name="src/module.h"/>
+    <File Name="src/state.c"/>
+    <File Name="src/state.h"/>
+    <File Name="src/types.h"/>
+    <File Name="src/events.c"/>
+    <File Name="src/events.h"/>
   </VirtualDirectory>
+  <VirtualDirectory Name="modules">
+    <VirtualDirectory Name="gui">
+      <File Name="modules/gui/module.json"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="net">
+      <File Name="modules/net/module.json"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="console">
+      <File Name="modules/console/module.json"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="examples"/>
 </CodeLite_Project>
