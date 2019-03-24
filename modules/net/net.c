@@ -1,3 +1,4 @@
+#include <shear.h>
 #include <module.h>
 
 int Net_init_module(void *game_struct, void *module_struct)
