@@ -7,6 +7,12 @@ extern "C" {
 
 #include "types.h"
 
+/*
+enum shear_initflags
+{
+	SHEAR_ENGINE_PLACEHOLDER = 1 << 0
+};
+*/
 
 
 #ifdef __cplusplus

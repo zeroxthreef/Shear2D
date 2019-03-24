@@ -1,5 +1,8 @@
 #include <shear.h>
 #include <module.h>
+#define STB_IMAGE_IMPLEMENTATION
+#include "lib/stb_image.h"
+
 
 int Res_init_module(void *game_struct, void *module_struct)
 {

@@ -52,9 +52,9 @@ typedef struct
 {
 	void *function;
 	uint8_t return_type;
-} shear_module_function;
+} shear_module_function_t;
 
-typedef map_t(shear_module_function) shear_module_funtion_map_t;
+typedef map_t(shear_module_function_t) shear_module_funtion_map_t;
 
 typedef struct
 {
@@ -89,7 +89,18 @@ typedef struct
 	shear_voidptr_vec_t children;
 } shear_scene_node;
 
+typedef struct
+{
+	union
+	{
+		double real;
+		int64_t integer;
+		uint8_t *string;
+	} value;
+	uint8_t type;
+} shear_gamevar_t;
 
+typedef map_t(shear_gamevar_t) shear_gamevar_map_t;
 
 
 typedef struct
@@ -98,6 +109,7 @@ typedef struct
 	shear_event_vec_t *events;
 	shear_module_vec_t *modules;
 	shear_timer_callback_vec_t *timers;
+	shear_gamevar_map_t gamevars;
 } shear_game_t;
 
 

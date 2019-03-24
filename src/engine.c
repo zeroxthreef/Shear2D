@@ -1,18 +1,7 @@
 #include "shear.h"
 
-#ifdef LIBRARY
-
-#endif
-#ifdef UNIX
-int main(int argc, char **argv)
+int shear_engine_init(shear_game_t *game, uint32_t flags)
 {
 	
-	
-	
-	return 0;
+	return SHEAR_RETURN_OK;
 }
-#endif
-#ifdef WIN
-
-
-#endif
