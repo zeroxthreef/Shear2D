@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-enum shear_event_types
+enum shear_event_types /* note these contain events for generic PC input. Controllers can be used if you configure the platform module to send them under custom controller events */
 {
 	SHEAR_EVENT_MOUSEMOVE,
 	SHEAR_EVENT_MOUSECLICKED,
@@ -14,6 +14,7 @@ enum shear_event_types
 	SHEAR_EVENT_KEYTYPED,
 	SHEAR_EVENT_KEYDOWN,
 	SHEAR_EVENT_KEYUP,
+	SHEAR_EVENT_CUSTOM_CONTROLLER,
 	SHEAR_EVENT_WINDOWCHANGE,
 	SHEAR_EVENT_MODULE_WARNING,
 	SHEAR_EVENT_MODULE_ERROR,

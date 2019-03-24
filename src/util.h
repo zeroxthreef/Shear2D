@@ -5,7 +5,10 @@
 extern "C" {
 #endif
 
-
+/* necessary libraries */
+#include "../lib/vec/src/vec.h"
+#include "../lib/map/src/map.h"
+#include "../lib/wren/src/include/wren.h"
 
 #ifdef __cplusplus
 }

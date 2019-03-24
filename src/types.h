@@ -5,6 +5,11 @@
 extern "C" {
 #endif
 
+/* necessary libraries */
+#include "../lib/vec/src/vec.h"
+#include "../lib/map/src/map.h"
+#include "../lib/wren/src/include/wren.h"
+
 #include <stdint.h>
 #include <stddef.h>
 
@@ -18,6 +23,9 @@ enum shear_responses
 	SHEAR_RETURN_MEMMORY,
 	SHEAR_RETURN_MISSING_DEPENDENCY
 };
+
+
+typedef map_t(void *) shear_voidptr_map_t;
 
 typedef struct
 {
@@ -47,6 +55,7 @@ typedef struct
 	int (* module_init)(void *game_struct, void *module_struct);
 	int (* module_post_init)(void *game_struct, void *module_struct); /* called after every module has run initially */
 	int (* module_deinit)(void *game_struct, void *module_struct);
+	shear_voidptr_map_t functions;
 	/*
 	void (* module_event)(void *game_struct, void *module_struct);
 	void (* module_render)(void *game_struct, void *module_struct);
@@ -56,12 +65,31 @@ typedef struct
 
 typedef vec_t(shear_module_t) shear_module_vec_t;
 
+typedef struct
+{
+	float hz;
+	uint8_t active;
+	void (* timer_callback)(void *game_struct);
+	/* TODO make a platform module thread context member */
+} shear_timer_callback_t;
 
+typedef vec_t(shear_timer_callback_t) shear_timer_callback_vec_t;
 
 
 typedef struct
 {
 	
+} shear_scene_node;
+
+
+
+
+typedef struct
+{
+	shear_state_vec_t *states;
+	shear_event_vec_t *events;
+	shear_module_vec_t *modules;
+	shear_timer_callback_vec_t *timers;
 } shear_game_t;
 
 

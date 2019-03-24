@@ -1,5 +1,5 @@
 # Shear2D
-2D game engine for C/C++
+2D game engine for C/C++/Wren scripts
 
 ## Prerequisites
 * Pike https://pike.lysator.liu.se/
@@ -21,6 +21,8 @@ if using windows
 The shear2d.pike script makes a new workspace for each project where you tell it to. This is the reason why the build process doesn't use cmake.
 
 After initializing the workspace folder, to compile your game, just run ``shear2d.pike build`` (if you installed it where PATH can see it). This will output a binary that contains everything including assets (if passed the command to include them) into /bin of your root workspace.
+
+NOTE: the "platform" module contains functions that the engine has to have, so if you're porting or using something other than SDL2, you will need to replicate functions that have comments above headers and prototypes with the text "NEEDED_BY_ENGINE".
 
 ## Features
 * Modular (lots of core features are modules you can disable or modify)
