@@ -3,3 +3,31 @@ statically compiled using the files in lib/ or use the system one and properly u
 in mind. People want easy downloads, so in my mind I wanted this to have the possibility of compiling to a single executable with zero
 dlls or shared objects necessary to install.*/
 
+#include <module.h>
+
+int System_init_module(void *game_struct, void *module_struct)
+{
+	shear_game_t *game = (shear_game_t *)game_struct;
+	shear_module_t *module = (shear_module_t *)module_struct;
+	
+	
+	return SHEAR_RETURN_OK;
+}
+
+int System_post_init_module(void *game_struct, void *module_struct)
+{
+	shear_game_t *game = (shear_game_t *)game_struct;
+	shear_module_t *module = (shear_module_t *)module_struct;
+	
+	
+	return SHEAR_RETURN_OK;
+}
+
+int System_deinit_module(void *game_struct, void *module_struct)
+{
+	shear_game_t *game = (shear_game_t *)game_struct;
+	shear_module_t *module = (shear_module_t *)module_struct;
+	
+	
+	return SHEAR_RETURN_OK;
+}

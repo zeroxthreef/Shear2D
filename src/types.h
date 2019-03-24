@@ -10,6 +10,15 @@ extern "C" {
 
 /* every public data structure and typedef */
 
+enum shear_responses
+{
+	SHEAR_RETURN_OK,
+	SHEAR_RETURN_GENERIC_WARNING,
+	SHEAR_RETURN_GENERIC_ERROR,
+	SHEAR_RETURN_MEMMORY,
+	SHEAR_RETURN_MISSING_DEPENDENCY
+};
+
 typedef struct
 {
 	char *name;
@@ -38,8 +47,10 @@ typedef struct
 	int (* module_init)(void *game_struct, void *module_struct);
 	int (* module_post_init)(void *game_struct, void *module_struct); /* called after every module has run initially */
 	int (* module_deinit)(void *game_struct, void *module_struct);
+	/*
 	void (* module_event)(void *game_struct, void *module_struct);
 	void (* module_render)(void *game_struct, void *module_struct);
+	 * */
 	/* TODO make a way to make module stdin/out */
 } shear_module_t;
 

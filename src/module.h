@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+#include "types.h"
 
 /* TODO make text input & output stream things for the ingame console to see */
 

@@ -211,6 +211,7 @@
     <VirtualDirectory Name="net">
       <File Name="modules/net/module.json"/>
       <VirtualDirectory Name="lib"/>
+      <File Name="modules/net/net.c"/>
     </VirtualDirectory>
     <VirtualDirectory Name="console">
       <File Name="modules/console/module.json"/>
