@@ -1,0 +1,10 @@
+{
+	"name": "physics",
+	"description": "Certain scene objects can be controlled by simulated physics",
+	"cflags": "",
+	"ldflags": "",
+	"custom_command": "",
+	"prefix": "Phys",
+	"sources" :[],
+	"enabled": "true"
+}

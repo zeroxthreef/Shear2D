@@ -1,0 +1,10 @@
+{
+	"name": "mapping",
+	"description": "Used for parsing the TMX format into objects that can be placed into the scene",
+	"cflags": "",
+	"ldflags": "",
+	"custom_command": "",
+	"prefix": "Map",
+	"sources" :[],
+	"enabled": "true"
+}

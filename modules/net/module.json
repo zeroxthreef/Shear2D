@@ -1,0 +1,10 @@
+{
+	"name": "networking",
+	"description": "Parts of the scene can be controlled remotely",
+	"cflags": "",
+	"ldflags": "",
+	"custom_command": "",
+	"prefix": "Net",
+	"sources" :[],
+	"enabled": "true"
+}

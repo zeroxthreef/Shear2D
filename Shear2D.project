@@ -232,6 +232,9 @@
       <File Name="modules/mapping/module.json"/>
       <VirtualDirectory Name="lib"/>
     </VirtualDirectory>
+    <VirtualDirectory Name="resources">
+      <File Name="modules/resources/module.json"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="examples">
     <VirtualDirectory Name="example_game"/>

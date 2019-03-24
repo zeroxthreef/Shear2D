@@ -3,6 +3,7 @@
 
 ## Prerequisites
 * Pike https://pike.lysator.liu.se/
+* CMake, but only if using some of the default modules
 
 ## Installation
 ```

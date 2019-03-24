@@ -1,0 +1,10 @@
+{
+	"name": "resources",
+	"description": "Loads files denoted by .s2d into a format that the engine can load",
+	"cflags": "",
+	"ldflags": "",
+	"custom_command": "",
+	"prefix": "Res",
+	"sources" :[],
+	"enabled": "true"
+}
