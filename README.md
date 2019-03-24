@@ -38,7 +38,7 @@ After initializing the workspace folder, to compile your game, just run ``shear2
 * add module register functions for Wren/the engine to call
 
 
-Uses SDL2, stb_image.h, Vec, Map, Wren, cmixer, tmx, librg, and chipmunk in the lib/ directory. Their respective licenses apply
+Uses SDL2, stb_image.h, Vec, Map, Wren, cmixer, tmx, enet, and chipmunk in the lib/ directory. Their respective licenses apply
 (Note, I will append applicable licenses here to correctly follow license guidelines, but this is a WIP project)
 (I will also redo this section and provide a link to each library used)
 

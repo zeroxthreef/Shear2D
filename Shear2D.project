@@ -180,9 +180,7 @@
     <File Name=".gitignore"/>
     <File Name="install.pike"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="lib">
-    <File Name="lib/stb_image.h"/>
-  </VirtualDirectory>
+  <VirtualDirectory Name="lib"/>
   <Dependencies Name="Debug_Linux"/>
   <Dependencies Name="Debug_Windows"/>
   <Dependencies Name="Release_Linux"/>
@@ -203,6 +201,8 @@
     <File Name="src/engine.c"/>
     <File Name="src/render.c"/>
     <File Name="src/render.h"/>
+    <File Name="src/timer.c"/>
+    <File Name="src/timer.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="modules">
     <VirtualDirectory Name="gui">
@@ -234,6 +234,8 @@
     </VirtualDirectory>
     <VirtualDirectory Name="resources">
       <File Name="modules/resources/module.json"/>
+      <File Name="modules/resources/resources.c"/>
+      <VirtualDirectory Name="lib"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="examples">

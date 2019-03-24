@@ -36,6 +36,7 @@ typedef struct
 	char *name;
 	uint8_t *modin, *modout;
 	int (* module_init)(void *game_struct, void *module_struct);
+	int (* module_post_init)(void *game_struct, void *module_struct); /* called after every module has run initially */
 	int (* module_deinit)(void *game_struct, void *module_struct);
 	void (* module_event)(void *game_struct, void *module_struct);
 	void (* module_render)(void *game_struct, void *module_struct);

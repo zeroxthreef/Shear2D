@@ -5,6 +5,6 @@
 	"ldflags": "",
 	"custom_command": "",
 	"prefix": "Res",
-	"sources" :[],
+	"sources" :["resources.c"],
 	"enabled": "true"
 }
