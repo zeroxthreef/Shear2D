@@ -210,15 +210,27 @@
     </VirtualDirectory>
     <VirtualDirectory Name="net">
       <File Name="modules/net/module.json"/>
+      <VirtualDirectory Name="lib"/>
     </VirtualDirectory>
     <VirtualDirectory Name="console">
       <File Name="modules/console/module.json"/>
     </VirtualDirectory>
     <VirtualDirectory Name="physics">
       <File Name="modules/physics/module.json"/>
+      <VirtualDirectory Name="lib"/>
     </VirtualDirectory>
     <VirtualDirectory Name="sound">
       <File Name="modules/sound/module.json"/>
+      <VirtualDirectory Name="lib"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="platform">
+      <File Name="modules/platform/module.json"/>
+      <VirtualDirectory Name="lib"/>
+      <File Name="modules/platform/platform.c"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="mapping">
+      <File Name="modules/mapping/module.json"/>
+      <VirtualDirectory Name="lib"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="examples">
