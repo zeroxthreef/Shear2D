@@ -201,6 +201,8 @@
     <File Name="src/util.c"/>
     <File Name="src/util.h"/>
     <File Name="src/engine.c"/>
+    <File Name="src/render.c"/>
+    <File Name="src/render.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="modules">
     <VirtualDirectory Name="gui">
@@ -215,9 +217,18 @@
     <VirtualDirectory Name="physics">
       <File Name="modules/physics/module.json"/>
     </VirtualDirectory>
+    <VirtualDirectory Name="sound">
+      <File Name="modules/sound/module.json"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="examples">
     <VirtualDirectory Name="example_game"/>
     <VirtualDirectory Name="example_module"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="game_src">
+    <File Name="game_src/game.json"/>
+    <VirtualDirectory Name="levels"/>
+    <VirtualDirectory Name="objects"/>
+    <VirtualDirectory Name="resources"/>
   </VirtualDirectory>
 </CodeLite_Project>

@@ -18,7 +18,8 @@ enum shear_event_types
 	SHEAR_EVENT_MODULE_WARNING,
 	SHEAR_EVENT_MODULE_ERROR,
 	SHEAR_EVENT_COMMAND,
-	SHEAR_EVENT_BROADCAST /* used by in game elements like hitboxes. While they can also call commands, but this is easier */
+	SHEAR_EVENT_BROADCAST, /* used by in game elements like hitboxes. While they can also call commands, but this is easier */
+	SHEAR_EVENT_CUSTOM /* basically broadcast, but things that are looking for simple data structures wont read this */
 };
 
 
