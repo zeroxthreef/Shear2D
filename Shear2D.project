@@ -188,7 +188,6 @@
   <Dependencies Name="Release_Linux"/>
   <Dependencies Name="Release_Windows"/>
   <VirtualDirectory Name="src">
-    <File Name="src/core.c"/>
     <File Name="src/shear.h"/>
     <File Name="src/scenegraph.c"/>
     <File Name="src/scenegraph.h"/>
@@ -199,6 +198,9 @@
     <File Name="src/types.h"/>
     <File Name="src/events.c"/>
     <File Name="src/events.h"/>
+    <File Name="src/util.c"/>
+    <File Name="src/util.h"/>
+    <File Name="src/engine.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="modules">
     <VirtualDirectory Name="gui">
@@ -210,6 +212,12 @@
     <VirtualDirectory Name="console">
       <File Name="modules/console/module.json"/>
     </VirtualDirectory>
+    <VirtualDirectory Name="physics">
+      <File Name="modules/physics/module.json"/>
+    </VirtualDirectory>
   </VirtualDirectory>
-  <VirtualDirectory Name="examples"/>
+  <VirtualDirectory Name="examples">
+    <VirtualDirectory Name="example_game"/>
+    <VirtualDirectory Name="example_module"/>
+  </VirtualDirectory>
 </CodeLite_Project>

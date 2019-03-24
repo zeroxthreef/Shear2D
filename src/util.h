@@ -1,5 +1,5 @@
-#ifndef STATE_H__
-#define STATE_H__
+#ifndef UTIL_H__
+#define UTIL_H__
 
 #ifdef __cplusplus
 extern "C" {
