@@ -1,10 +1,6 @@
 {
 	"name": "GUI",
 	"description": "Draws elements onto the screen in typical GUI fashon",
-	"cflags": "",
-	"ldflags": "",
-	"custom_command": "",
 	"prefix": "GUI",
-	"sources" :[],
 	"enabled": "false"
 }

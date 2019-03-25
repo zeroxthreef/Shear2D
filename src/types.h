@@ -24,6 +24,19 @@ enum shear_responses
 	SHEAR_RETURN_MISSING_DEPENDENCY
 };
 
+/* variable types */
+
+typedef float shear_vec2_f[2];
+typedef double shear_vec2_d[2];
+
+typedef float shear_vec3_f[3];
+typedef double shear_vec3_d[3];
+
+typedef float shear_vec4_f[4];
+typedef double shear_vec4_d[4];
+
+
+/* engine data stuctures */
 
 typedef vec_t(void *) shear_voidptr_vec_t;
 
@@ -96,6 +109,12 @@ typedef struct
 		double real;
 		int64_t integer;
 		uint8_t *string;
+		shear_vec2_f vec2f;
+		shear_vec2_d vec2d;
+		shear_vec3_f vec3f;
+		shear_vec3_d vec3d;
+		shear_vec4_f vec4f;
+		shear_vec4_d vec4d;
 	} value;
 	uint8_t type;
 } shear_gamevar_t;

@@ -1,10 +1,6 @@
 {
 	"name": "platform",
 	"description": "Interract with the operating system and provide functions to draw scene elements",
-	"cflags": "",
-	"ldflags": "",
-	"custom_command": "",
 	"prefix": "System",
-	"sources" :["platform.c"],
 	"enabled": "true"
 }

@@ -1,0 +1,6 @@
+{
+	"name": "scripting",
+	"description": "Run wren scripts in scene objects",
+	"prefix": "Script",
+	"enabled": "true"
+}

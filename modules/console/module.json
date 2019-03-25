@@ -1,10 +1,6 @@
 {
 	"name": "console",
 	"description": "Make development easier and adds quick access to events and other objects",
-	"cflags": "",
-	"ldflags": "",
-	"custom_command": "",
 	"prefix": "Con",
-	"sources" :[],
 	"enabled": "false"
 }

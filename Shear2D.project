@@ -200,8 +200,6 @@
     <File Name="src/util.c"/>
     <File Name="src/util.h"/>
     <File Name="src/engine.c"/>
-    <File Name="src/render.c"/>
-    <File Name="src/render.h"/>
     <File Name="src/timer.c"/>
     <File Name="src/timer.h"/>
   </VirtualDirectory>
@@ -230,6 +228,8 @@
       <VirtualDirectory Name="lib"/>
       <File Name="modules/platform/platform.c"/>
       <File Name="modules/platform/module.pike"/>
+      <File Name="modules/platform/renderer.c"/>
+      <File Name="modules/platform/renderer.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="mapping">
       <File Name="modules/mapping/module.json"/>
@@ -239,6 +239,10 @@
       <File Name="modules/resources/module.json"/>
       <File Name="modules/resources/resources.c"/>
       <VirtualDirectory Name="lib"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="scripting">
+      <VirtualDirectory Name="lib"/>
+      <File Name="modules/scripting/module.json"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <VirtualDirectory Name="examples">

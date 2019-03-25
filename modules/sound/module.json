@@ -1,0 +1,6 @@
+{
+	"name": "sound",
+	"description": "Mixes sounds, effects, and plays multiple audio formats",
+	"prefix": "Aud",
+	"enabled": "true"
+}
