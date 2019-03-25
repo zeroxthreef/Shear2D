@@ -2,6 +2,8 @@
 
 import Arg;
 
+#include "respack.pike"
+
 /* dont touch these constants. They will eventually be automatically increased with another tool */
 constant shear_major = 0;
 constant shear_minor = 0;
@@ -9,7 +11,7 @@ constant shear_revision = 0;
 /* =================== */
 
 
-array(string) engine_src = ({
+array(string) engine_src = ({ /* these all will be appended to a "src/" string */
 	"engine.c",
 	"events.c",
 	"module.c",
@@ -26,7 +28,28 @@ class ShearArgs
 	
 	Opt help = MaybeOpt("--help") | MaybeOpt("--h");
 	Opt version = NoOpt("--version");
-	Opt cc = HasOpt("--cc");
+	Opt cc = HasOpt("-cc");
+	Opt cc_lib_loc = HasOpt("-cclibloc"); /* for the compilers library location if it's any different */
+	Opt cc_include_loc = HasOpt("-ccincloc"); /* for the compilers include location if it's any different */
+	Opt workspace_create = HasOpt("-create");
+	
+};
+
+class CompilerController
+{
+	private array(string) srcs;
+	
+	
+	void create(array(string) eng_src)
+	{
+		srcs = eng_src;
+	}
+	
+	/* scan the game dir and add c files wherever it finds them */
+	void scan_game_dir()
+	{
+		
+	}
 };
 
 

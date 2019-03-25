@@ -179,6 +179,7 @@
     <File Name="LICENSE"/>
     <File Name=".gitignore"/>
     <File Name="install.pike"/>
+    <File Name="respack.pike"/>
   </VirtualDirectory>
   <VirtualDirectory Name="lib"/>
   <Dependencies Name="Debug_Linux"/>
@@ -228,6 +229,7 @@
       <File Name="modules/platform/module.json"/>
       <VirtualDirectory Name="lib"/>
       <File Name="modules/platform/platform.c"/>
+      <File Name="modules/platform/module.pike"/>
     </VirtualDirectory>
     <VirtualDirectory Name="mapping">
       <File Name="modules/mapping/module.json"/>
