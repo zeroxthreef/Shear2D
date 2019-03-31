@@ -1,0 +1,1 @@
+/* takes a bunch of function pointers with unspecified arguments */

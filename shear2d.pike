@@ -2,13 +2,8 @@
 
 import Arg;
 
+#include "version.pike"
 #include "respack.pike"
-
-/* dont touch these constants. They will eventually be automatically increased with another tool */
-constant shear_major = 0;
-constant shear_minor = 0;
-constant shear_revision = 0;
-/* =================== */
 
 
 array(string) engine_src = ({ /* these all will be appended to a "src/" string */
@@ -18,8 +13,7 @@ array(string) engine_src = ({ /* these all will be appended to a "src/" string *
 	"scenegraph.c",
 	"state.c",
 	"timer.c",
-	"util.c",
-	"render.c",
+	"util.c"
 });
 
 class ShearArgs

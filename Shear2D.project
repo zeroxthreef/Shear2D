@@ -180,6 +180,8 @@
     <File Name=".gitignore"/>
     <File Name="install.pike"/>
     <File Name="respack.pike"/>
+    <File Name="update_repo.pike"/>
+    <File Name="version.pike"/>
   </VirtualDirectory>
   <VirtualDirectory Name="lib"/>
   <Dependencies Name="Debug_Linux"/>
