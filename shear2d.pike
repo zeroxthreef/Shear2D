@@ -2,8 +2,8 @@
 
 import Arg;
 
-#include "version.pike"
-#include "respack.pike"
+#include "version.pike" /* when this gets installed, we cant do this. Need to replace this exact string with the new install path */
+#include "respack.pike" /* same here */ /* wait, scratch that. Just put all of these files in the bin */
 
 /* note: https://www.freeformatter.com/java-dotnet-escape.html#ad-output is super helpful */
 string help = "\
@@ -26,6 +26,14 @@ string help = "\
 --create\n\
 	Asks questions for features and qualities\n\
 	Initializes a directory inside the one this is run under to become the project workspace\n\
+\n\
+--run\n\
+	Runs the current workspace and game in debug mode (doesn't pack the game files)\n\
+--test_compilation\n\
+	Tests if the engine and game compile in debug mode\n\
+\n\
+--output\n\
+	Creates a binary and necessary files in /output\n\
 ";
 
 array(string) engine_src = ({ /* these all will be appended to a "src/" string */
@@ -56,15 +64,49 @@ class CompilerController
 	private array(string) srcs;
 	
 	
-	void create(array(string) eng_src)
+	void create(array(string) eng_src, void|array(string) game_srcs)
 	{
 		srcs = eng_src;
+		if(game_srcs)
+			srcs += game_srcs;
 	}
 	
-	/* scan the game dir and add c files wherever it finds them */
-	void scan_game_dir()
+	/* scan for modules and add their sources and libraries */
+	mapping add_module_sources()
 	{
+		array(string) modules = get_dir("modules");
+		mapping module_settings;
 		
+		write("Handling modules...\n");
+		
+		foreach(modules, string data)
+		{
+			/* make sure enabled in the module.json */
+			module_settings = Standards.JSON.decode(Stdio.read_file("modules/" + data + "/module.json"));
+			
+			if(module_settings->enabled == "true")
+			{
+				write("Handling module %s, prefix %s\n", data, module_settings->prefix);
+				
+				/* test for module pike compile scripts. indicates module is using an external library */
+				
+			}
+			else
+				write("Skipping module %s\n", data);
+			
+			/* compile the external libraries if necessary */
+		}
+		
+	}
+	
+	int compile(string cc, string lloc, string iloc)
+	{
+		mapping sources_libraries = add_module_sources();
+		
+		/* add the engine sources to the mapping aswell */
+		
+		
+		return 0;
 	}
 };
 
@@ -73,8 +115,16 @@ int main(int argc, array(string) argv)
 {
 	/* ShearArgs arguments = ShearArgs(argv); */
 	mapping arguments = Arg.parse(argv);
+	CompilerController ccontroller = CompilerController(engine_src);
+	string cc = "cc", cclibloc, ccincloc;
+	
+	/* get necessary variables */
+	if(arguments->cc)
+		cc = arguments->cc;
+	
 	
 	/* use the commands passed to determine what to do */
+	
 	
 	if(arguments->help)
 	{
@@ -86,6 +136,14 @@ int main(int argc, array(string) argv)
 	}
 	else if(arguments->version)
 		write("Shear version %d.%d.%d by 0x3F\n", shear_major, shear_minor, shear_revision);
+	else if(arguments->test_compile)
+	{
+		write("Testing if everything compiles smoothly...\n");
+		if(ccontroller.compile(cc, cclibloc, ccincloc))
+			write("Error compiling engine or game\n");
+		else
+			write("everything compiled successfully\n");
+	}
 	else
 		write("No command selected\n");
 	
