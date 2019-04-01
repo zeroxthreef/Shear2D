@@ -1,0 +1,5 @@
+{
+	"name": "test game",
+	"c_src": ["game.c"],
+	"export_single_binary": "true"
+}

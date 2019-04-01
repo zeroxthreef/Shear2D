@@ -2,5 +2,6 @@
 	"name": "console",
 	"description": "Make development easier and adds quick access to events and other objects",
 	"prefix": "Con",
+	"c_src": [],
 	"enabled": "false"
 }

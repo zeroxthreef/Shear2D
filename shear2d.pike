@@ -75,7 +75,7 @@ class CompilerController
 	mapping add_module_sources()
 	{
 		array(string) modules = get_dir("modules");
-		mapping module_settings;
+		mapping module_settings, module_libs_srcs = (["srcs":({}), "libs":({})]);
 		
 		write("Handling modules...\n");
 		
@@ -88,15 +88,56 @@ class CompilerController
 			{
 				write("Handling module %s, prefix %s\n", data, module_settings->prefix);
 				
+				/* add the module sources to the mapping */
+				
+				/*
+				if(module_settings->c_src)
+					foreach(module_settings->c_src, string m_src)
+					{
+						//Array.push(module_libs_srcs->srcs, "modules/" + data + "/" + m_src);
+						module_libs_srcs->src += ({(string)("modules/" + data + "/" + m_src)});
+					}
+				*/
+				/* wish i could do the above method, but that doesnt work for whatever reason */
+				if(module_settings->c_src)
+				{
+					/* loop through each one first and modify the path */
+					for(int i = 0; i < sizeof(module_settings->c_src); i++)
+						module_settings->c_src[i] = "modules/" + data + "/" + module_settings->c_src[i];
+					
+					/* add it to the source array */
+					module_libs_srcs->srcs += module_settings->c_src;
+				}
+				
 				/* test for module pike compile scripts. indicates module is using an external library */
+				
+				if(Stdio.is_file("modules/" + data + "/module.pike"))
+				{
+					/* compile the external libraries if necessary */
+					write("Handling external librar(y/ies)\n");
+					
+					/* need to somehow return a string array from the other script */
+				}
 				
 			}
 			else
 				write("Skipping module %s\n", data);
 			
-			/* compile the external libraries if necessary */
+			
 		}
 		
+		write("Module sources added to compile step\n");
+		
+		foreach(module_libs_srcs->srcs, string mod_srcs)
+			write("%s\n", mod_srcs);
+		
+		write("Module libraries added to linking step\n");
+		
+		foreach(module_libs_srcs->libs, string mod_libs)
+			write("%s\n", mod_libs);
+		
+		
+		return module_libs_srcs;
 	}
 	
 	int compile(string cc, string lloc, string iloc)

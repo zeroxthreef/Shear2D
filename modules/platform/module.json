@@ -2,5 +2,6 @@
 	"name": "platform",
 	"description": "Interract with the operating system and provide functions to draw scene elements",
 	"prefix": "System",
+	"c_src": ["platform.c", "renderer.c"],
 	"enabled": "true"
 }

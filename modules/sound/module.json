@@ -2,5 +2,6 @@
 	"name": "sound",
 	"description": "Mixes sounds, effects, and plays multiple audio formats",
 	"prefix": "Aud",
+	"c_src": [],
 	"enabled": "true"
 }

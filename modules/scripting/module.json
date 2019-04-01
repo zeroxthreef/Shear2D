@@ -2,5 +2,6 @@
 	"name": "scripting",
 	"description": "Run wren scripts in scene objects",
 	"prefix": "Script",
+	"c_src": [],
 	"enabled": "true"
 }

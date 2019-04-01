@@ -2,5 +2,6 @@
 	"name": "GUI",
 	"description": "Draws elements onto the screen in typical GUI fashon",
 	"prefix": "GUI",
+	"c_src": [],
 	"enabled": "false"
 }

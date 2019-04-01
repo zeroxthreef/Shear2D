@@ -10,6 +10,7 @@ int System_init_module(void *game_struct, void *module_struct)
 	shear_game_t *game = (shear_game_t *)game_struct;
 	shear_module_t *module = (shear_module_t *)module_struct;
 	
+	/* call the module add function function and pass a pointer to each function in this module */
 	
 	return SHEAR_RETURN_OK;
 }

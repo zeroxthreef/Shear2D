@@ -2,5 +2,6 @@
 	"name": "physics",
 	"description": "Certain scene objects can be controlled by simulated physics",
 	"prefix": "Phys",
+	"c_src": [],
 	"enabled": "true"
 }

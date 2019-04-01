@@ -2,5 +2,6 @@
 	"name": "mapping",
 	"description": "Used for parsing the TMX format into objects that can be placed into the scene",
 	"prefix": "Map",
+	"c_src": [],
 	"enabled": "true"
 }

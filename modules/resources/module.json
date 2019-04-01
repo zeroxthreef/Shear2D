@@ -2,5 +2,6 @@
 	"name": "resources",
 	"description": "Loads files denoted by .s2d into a format that the engine can load",
 	"prefix": "Res",
+	"c_src": ["resources.c"],
 	"enabled": "true"
 }
