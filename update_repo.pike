@@ -79,7 +79,7 @@ int main(int argc, array(string) argv)
 	
 	if(choice)
 	{
-		Process current;
+		object current;
 		
 		/* add to be committed files */
 		current = Process.create_process(({"git", "add", "-A"}));

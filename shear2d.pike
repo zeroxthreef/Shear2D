@@ -28,9 +28,16 @@ string help = "\
 	Initializes a directory inside the one this is run under to become the project workspace\n\
 \n\
 --run\n\
-	Runs the current workspace and game in debug mode (doesn't pack the game files)\n\
---test_compilation\n\
-	Tests if the engine and game compile in debug mode\n\
+	Compiles and runs game\n\
+\n\
+--runonly\n\
+	Just runs game binary. Usefulif just changing scripts\n\
+\n\
+--compile\n\
+	Compiles game (debug mode by default if you leave game.json in debug mode)\n\
+\n\
+--compile_release\n\
+	Explicitly compiles as release (changes the json in game.json)\n\
 \n\
 --output\n\
 	Creates a binary and necessary files in /output\n\
@@ -141,16 +148,15 @@ class CompilerController
 	}
 	
 	/* returns a path to the object file */
-	private string _compile_individual(string cc, string lloc, string iloc, string file)
+	private string _compile_individual(string cc, array(string) cflags, string lloc, string iloc, string file)
 	{
 		object current;
+		int return_val;
 		string I_cflag, object_loc = "output/tmp/", temp_str;
 		array(string) temp_filter, command = ({cc, "-c", "-o"});
 		
 		if(iloc)
 			I_cflag = "-I" + iloc;
-		
-		write("Compiling %s\n", file);
 		
 		
 		/* rename to object file */
@@ -162,15 +168,39 @@ class CompilerController
 		
 		object_loc += temp_str;
 		
-		write("output %s\n", object_loc);
+		write("Compiling %s -> %s\n", file, object_loc);
 		
-		//current = Process.create_process(command);
-		//current.wait();
+		/* add to the command */
+		
+		command += ({object_loc});
+		if(iloc)
+			command += ({I_cflag});
+		command += ({"-Isrc"});
+		command += cflags;
+		command += ({file});
+		
+		/* temporary debugging */
+		//foreach(command, string arg)
+			//write("commandpart: %s\n", arg);
+		
+		/* finally run the command and respond to errors (TODO */
+		
+		current = Process.create_process(command);
+		return_val = current.wait();
+		
+		/* handle errors */
+		if(return_val)
+			return 0;
+		else
+			return object_loc;
 	}
 	
-	int compile(string cc, string lloc, string iloc)
+	int compile(string cc, string bin_name, array(string) cflags, string lloc, string iloc)
 	{
-		mapping sources_libraries = add_module_sources(), game_settings = Standards.JSON.decode(Stdio.read_file("game_src/game.json"));;
+		mapping sources_libraries = add_module_sources(), game_settings = Standards.JSON.decode(Stdio.read_file("game_src/game.json"));
+		array(string) objects = ({});
+		
+		write("Compiling \"%s\"\n", bin_name);
 		
 		/* add the engine sources to the mapping aswell */
 		for(int i = 0; i < sizeof(engine_src); i++)
@@ -186,15 +216,32 @@ class CompilerController
 		sources_libraries->srcs += game_settings->c_src;
 		
 		
+		/* make the dir */
+		
+		if(!Stdio.is_dir("output/tmp"))
+			if(!mkdir("output") && !mkdir("output/tmp"))
+			{
+				write("Unable to create the output & tmp directory\n");
+				return 1;
+			}
+		
 		/* compile objects for all source files */
 		foreach(sources_libraries->srcs, string src)
 		{
-			_compile_individual(cc, lloc, iloc, src);
+			string object_current = _compile_individual(cc, cflags, lloc, iloc, src);
+			
+			if(!object_current)
+			{
+				write("Compile error\n");
+				return 1;
+			}
+			
+			objects += ({object_current});
 		}
 		
 		
 		/* link everything */
-		
+		write("Linking \"%s\"\n", bin_name);
 		
 		return 0;
 	}
@@ -204,13 +251,27 @@ class CompilerController
 int main(int argc, array(string) argv)
 {
 	/* ShearArgs arguments = ShearArgs(argv); */
-	mapping arguments = Arg.parse(argv);
+	mapping arguments = Arg.parse(argv), game_settings = Standards.JSON.decode(Stdio.read_file("game_src/game.json"));
 	CompilerController ccontroller = CompilerController(engine_src);
 	string cc = "cc", cclibloc, ccincloc;
+	array(string) final_flags, default_flags = ({"-Wall"}), debug_flags = ({"-g"}); /* TODO add debug defines */
 	
 	/* get necessary variables */
 	if(arguments->cc)
 		cc = arguments->cc;
+	
+	/* modify flags */
+	final_flags = default_flags;
+	
+	if(game_settings->debug == "true")
+	{
+		write("Debug mode\n");
+		final_flags += debug_flags;
+	}
+	else
+		write("Release mode\n");
+	
+	final_flags += game_settings->cflags;
 	
 	
 	/* use the commands passed to determine what to do */
@@ -226,10 +287,10 @@ int main(int argc, array(string) argv)
 	}
 	else if(arguments->version)
 		write("Shear version %d.%d.%d by 0x3F\n", shear_major, shear_minor, shear_revision);
-	else if(arguments->test_compile)
+	else if(arguments->compile)
 	{
-		write("Testing if everything compiles smoothly...\n");
-		if(ccontroller.compile(cc, cclibloc, ccincloc))
+		write("Compiling...\n");
+		if(ccontroller.compile(cc, replace(game_settings->name, " ", "_"), final_flags, cclibloc, ccincloc))
 			write("Error compiling engine or game\n");
 		else
 			write("everything compiled successfully\n");

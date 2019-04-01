@@ -8,7 +8,7 @@ extern "C" {
 /* necessary libraries */
 #include "../lib/vec/src/vec.h"
 #include "../lib/map/src/map.h"
-#include "../lib/wren/src/include/wren.h"
+/*#include "../lib/wren/src/include/wren.h"*/
 
 #include <stdint.h>
 #include <stddef.h>
