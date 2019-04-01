@@ -41,6 +41,9 @@ string help = "\
 \n\
 --output\n\
 	Creates a binary and necessary files in /output\n\
+\n\
+--clean\n\
+	Cleans the output files and modules\n\
 ";
 
 array(string) engine_src = ({ /* these all will be appended to a "src/" string */
@@ -79,7 +82,7 @@ class CompilerController
 	}
 	
 	/* scan for modules and add their sources and libraries */
-	mapping add_module_sources()
+	mapping add_module_sources(string cc, string lloc, string iloc)
 	{
 		array(string) modules = get_dir("modules");
 		mapping module_settings, module_libs_srcs = (["srcs":({}), "libs":({})]);
@@ -120,10 +123,22 @@ class CompilerController
 				
 				if(Stdio.is_file("modules/" + data + "/module.pike"))
 				{
+					program prog_data = compile_file("modules/" + data + "/module.pike");
+					object prog = prog_data();
+					/* mixed prog_dat = map(prog, 0); */
+					
+					if(!prog)
+					{
+						write("Unable to run module script\n");
+						return 0;
+					}
+					
 					/* compile the external libraries if necessary */
 					write("Handling %s's external librar(y/ies)\n", data);
 					
+					
 					/* need to somehow return a string array from the other script */
+					module_libs_srcs->libs += prog->compile(true, cc, iloc, lloc, "");
 				}
 				
 			}
@@ -195,9 +210,41 @@ class CompilerController
 			return object_loc;
 	}
 	
+	private int _link_everything(string cc, string bin_name, array(string) cflags, string lloc, string iloc, array(string) objects, array(string) libraries)
+	{
+		object current;
+		int return_val;
+		array(string) command = ({cc, "-o"});
+		
+		
+		/* make sure libraries have the right prefix */
+		
+		for(int i = 0; i < sizeof(libraries); i++)
+			libraries[i] = "-l" + libraries[i];
+		
+		/* add all objects and link everything into a single binary */
+		command += ({"output/" + bin_name});
+		command += objects;
+		
+		/* TODO add system library path */
+		
+		/* add libraries to the command */
+		command += libraries;
+		
+		/* temporary debugging */
+		//foreach(command, string arg)
+			//write("commandpart: %s\n", arg);
+		
+		current = Process.create_process(command);
+		return_val = current.wait();
+		
+		/* handle errors */
+		return return_val;
+	}
+	
 	int compile(string cc, string bin_name, array(string) cflags, string lloc, string iloc)
 	{
-		mapping sources_libraries = add_module_sources(), game_settings = Standards.JSON.decode(Stdio.read_file("game_src/game.json"));
+		mapping sources_libraries = add_module_sources(cc, lloc, iloc), game_settings = Standards.JSON.decode(Stdio.read_file("game_src/game.json"));
 		array(string) objects = ({});
 		
 		write("Compiling \"%s\"\n", bin_name);
@@ -242,6 +289,13 @@ class CompilerController
 		
 		/* link everything */
 		write("Linking \"%s\"\n", bin_name);
+		if(_link_everything(cc, bin_name, cflags, lloc, iloc, objects, sources_libraries->libs))
+		{
+			write("Link error\n");
+			return 1;
+		}
+		
+		
 		
 		return 0;
 	}
@@ -293,7 +347,7 @@ int main(int argc, array(string) argv)
 		if(ccontroller.compile(cc, replace(game_settings->name, " ", "_"), final_flags, cclibloc, ccincloc))
 			write("Error compiling engine or game\n");
 		else
-			write("everything compiled successfully\n");
+			write("Everything compiled successfully\n");
 	}
 	else
 		write("No command selected\n");

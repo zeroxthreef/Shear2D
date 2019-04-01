@@ -1,7 +1,6 @@
-
-array(string) compile(bool static, string cc, string includel, string libl, string extra) /* doesnt really matter if were compiling statically or not. Will just return -l:libname.a if static an dpass args to cmake if needed */
+array(string) compile(bool do_static, string cc, string includel, string libl, string extra) /* doesnt really matter if were compiling statically or not */
 {
-	array(string) libs;
+	array(string) libs = ({});
 	
 	
 	
@@ -11,5 +10,5 @@ array(string) compile(bool static, string cc, string includel, string libl, stri
 bool clean()
 {
 	
-	return false;
+	return true;
 }

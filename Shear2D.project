@@ -229,9 +229,9 @@
       <File Name="modules/platform/module.json"/>
       <VirtualDirectory Name="lib"/>
       <File Name="modules/platform/platform.c"/>
-      <File Name="modules/platform/module.pike"/>
       <File Name="modules/platform/renderer.c"/>
       <File Name="modules/platform/renderer.h"/>
+      <File Name="modules/platform/module.pike"/>
     </VirtualDirectory>
     <VirtualDirectory Name="mapping">
       <File Name="modules/mapping/module.json"/>
@@ -241,6 +241,7 @@
       <File Name="modules/resources/module.json"/>
       <File Name="modules/resources/resources.c"/>
       <VirtualDirectory Name="lib"/>
+      <File Name="modules/resources/module.pike"/>
     </VirtualDirectory>
     <VirtualDirectory Name="scripting">
       <VirtualDirectory Name="lib"/>
