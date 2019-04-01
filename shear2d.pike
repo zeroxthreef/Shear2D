@@ -114,7 +114,7 @@ class CompilerController
 				if(Stdio.is_file("modules/" + data + "/module.pike"))
 				{
 					/* compile the external libraries if necessary */
-					write("Handling external librar(y/ies)\n");
+					write("Handling %s's external librar(y/ies)\n", data);
 					
 					/* need to somehow return a string array from the other script */
 				}
@@ -140,11 +140,60 @@ class CompilerController
 		return module_libs_srcs;
 	}
 	
+	/* returns a path to the object file */
+	private string _compile_individual(string cc, string lloc, string iloc, string file)
+	{
+		object current;
+		string I_cflag, object_loc = "output/tmp/", temp_str;
+		array(string) temp_filter, command = ({cc, "-c", "-o"});
+		
+		if(iloc)
+			I_cflag = "-I" + iloc;
+		
+		write("Compiling %s\n", file);
+		
+		
+		/* rename to object file */
+		
+		temp_filter = file / "/";
+		temp_str = temp_filter * "_";
+		
+		temp_str = replace(temp_str, ".c", ".o");
+		
+		object_loc += temp_str;
+		
+		write("output %s\n", object_loc);
+		
+		//current = Process.create_process(command);
+		//current.wait();
+	}
+	
 	int compile(string cc, string lloc, string iloc)
 	{
-		mapping sources_libraries = add_module_sources();
+		mapping sources_libraries = add_module_sources(), game_settings = Standards.JSON.decode(Stdio.read_file("game_src/game.json"));;
 		
 		/* add the engine sources to the mapping aswell */
+		for(int i = 0; i < sizeof(engine_src); i++)
+			engine_src[i] = "src/" + engine_src[i];
+		
+		sources_libraries->srcs += engine_src;
+		
+		/* add the game sources */
+		
+		for(int i = 0; i < sizeof(game_settings->c_src); i++)
+			game_settings->c_src[i] = "game_src/" + game_settings->c_src[i];
+		
+		sources_libraries->srcs += game_settings->c_src;
+		
+		
+		/* compile objects for all source files */
+		foreach(sources_libraries->srcs, string src)
+		{
+			_compile_individual(cc, lloc, iloc, src);
+		}
+		
+		
+		/* link everything */
 		
 		
 		return 0;
